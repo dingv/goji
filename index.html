@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+<title>Goji</title>
+</head>
+
+<body>
+	<h1>Goji</h1>
+	<b>Goji</b> (<b>G</b>amified <b>O</b>b<b>J</b>ect-based <b>I</b>nterpreter) is a lightweight, end-to-end markup language, interpreter, and renderer to develop gamified web experiences. The first Goji use cases are e-learning and e-commerce applications, but gamification principles are highly-applicable and customizable. Creative and nontraditional innovation is anticipated. 
+
+	<h2>Goji stack</h2>
+	<ul>
+		<li><a href="#lang">Goji language</a></li>
+		<li><a href="#interpreter">Goji interpreter</a></li>
+		<li><a href="#renderer">Goji frontend renderer</a></li>
+	</ul>
+
+	<h2 id="lang">Goji language</h2>
+
+	To start Goji programming, clone the goji GitHub repo, create a .goj file in the repo, and start scripting.
+
+	<h3>Syntax</h3>
+	Goji's syntax draws inspiration from the Python stack, and, in its data exchange functionality, addresses some of the syntactic inefficiences of JSON. Goji is space character-agnostic, newline-delineated, and engineered to simplify as much as possible the rendering of gamified elements.
+
+	<h3>Datatypes</h3>
+	Goji datatypes ('interface types') can be declared and piped through the Goji stack to render a number of interactive gamification elements. 
+	<ul>
+		<li>Declare page and heading <b>title</b> with <p style="display:inline;font-family:courier;">title='text'</p></li>
+		<li>Declare sequential, point-rewarding <b>flashcards</b> (<a href='cards/index.html' target='_blank'>demo</a>) with <p style="display:inline;font-family:courier;">card=['image_path', 'text', point_value]</p></li>
+		<li>Declare <b>multiple choice</b> checkpoints with <p style="display:inline;font-family:courier;">mc=['question', [options], correct_index, point_value]</p></li>
+		<li>Declare <b>essay</b> questions with <p style="display:inline;font-family:courier;">essay=['prompt', char_limit, point_value]</p></li>
+		<li>Declare <b>products</b> with <p style="display:inline;font-family:courier;">product=['image_path', 'text', price]</p></li>
+	</ul>
+
+	<h2 id="interpreter">Goji interpreter</h2>
+	The Goji interpreter is written in Python and will interpret any properly constructed .goj file (see specs above). To execute the interpreter, navigate to your <p style="display:inline;font-family:courier;">goji</p> directory, ensure that your .goj scripts are housed in the directory, and run <p style="font-family:courier;">python goji.py [your_script_name].goj</p>
+
+	<h2 id="renderer">Goji renderer</h2>
+	Each time you execute the Goji interpreter on a .goj script <p style="display:inline;font-family:courier;">[your_script_name].goj</p>, the interpreter reads your script and the renderer generates HTML, CSS, and JavaScript files in a new, corresponding folder <p style="display:inline;font-family:courier;">goji/[your_script_name]</p>. You can put images anywhere in this project folder and they will render in the Goji-rendered webpage (viewable at <p style="display:inline;font-family:courier;">goji/[your_script_name]/index.html</p>, provided you use the correct filepaths in your Goji script. 
+
+</body>
+
+</html>
