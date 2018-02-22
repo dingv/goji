@@ -1,6 +1,6 @@
 # Goji
 
-For the HTML version of this readme, see [this](dingv.github.io/goji).
+For the HTML version of this readme, see [this](https://dingv.github.io/goji/).
 
 **Goji** (*G*amified *O*b*J*ect-based *I*nterpreter) is a lightweight, end-to-end markup language, interpreter, and renderer to develop gamified web experiences. The first Goji use cases are e-learning and e-commerce applications, but gamification principles are highly-applicable and customizable. Creative and nontraditional innovation is anticipated.
 
