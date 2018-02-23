@@ -20,10 +20,25 @@ Goji's syntax draws inspiration from the Python stack and the flexible XML scrip
 ### Datatypes
 Goji datatypes ('interface types') can be declared and piped through the Goji stack to render a number of interactive gamification elements.
 - Declare page and heading title with `title='text'`
-- Declare sequential, point-rewarding flashcards with `card=['image_path', 'text', point_value]`
-- Declare multiple choice checkpoints with `mc=['question', [options], correct_index, point_value]`
+- Declare point-rewarding flashcards with `card=['image_path', 'text', point_value]`
 - Declare essay questions with `essay=['prompt', char_limit, point_value]`
 - Declare products with `product=['image_path', 'text', price]`
+
+### A simple Goji script
+Click [here](https://dingv.github.io/goji/frames/index.html) to see the Goji rendering of the following script. Goji parses .goj scripts sequentially.
+
+'''
+title='U.S. Presidents'
+card=['img/GeorgeWashington.jpg', '1: George Washington, 1789-1797', 100]
+card=['img/JohnAdams.jpg', '2: John Adams, 1797-1801', 100]
+card=['img/ThomasJefferson.jpg', '3: Thomas Jefferson, 1801-1809', 100]
+card=['img/JamesMadison.jpg', '4: James Madison, 1809-1817', 100]
+card=['img/JamesMonroe.jpg', '5: James Monroe, 1817-1825', 100]
+card=['img/JohnQuincyAdams.jpg', '6: John Quincy Adams, 1825-1829', 100]
+essay=['Name a U.S. President.', 100, 200]
+product=['img/pencil.jpg', 'Presidential Pencil', -500]
+card=['img/complete.jpg', 'Task complete!', 100]
+'''
 
 ## Goji interpreter
 The Goji interpreter is written in Python and will interpret any properly constructed `.goj` file (see specs above). To execute the interpreter, navigate to your `goji` directory, ensure that your `.goj` scripts are housed in the directory, and run

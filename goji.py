@@ -93,8 +93,9 @@ def render_html(directory, objects):
 		# update runstr
 		runstr = runstr[end_clip+1:]
 		h.write('<p id="description">' + description + '</p>\n')
-		h.write('<button type="button" class="button" onclick="pageflip()">Got it</button>')
-		
+		h.write('<button type="button" class="button" onclick="pageflip()">Claim</button>')
+		h.write('<button type="button" class="button" onclick="skip()">Skip</button>')
+
 		h.write('<p id="score">Score: 0</p>\n')
 	
 	h.write('</body>\n')
@@ -105,28 +106,27 @@ def render_html(directory, objects):
 
 def render_js(directory, objects):
 	j = open(directory + '/process.js', 'w')
-	j.write('var index = 0;\n')
-	j.write('var score = 0;\n')
 
-	j.write('var cards = [\n')
+	j.write('var frames = [\n')
 
 	for i in range(1, len(objects)):
 		object = objects[i]
-		string = object[1]
-		j.write(string + ',\n')
+		dtype = object[0]
+		remstr = object[1]
+		j.write('[\'' + str(dtype) + '\',' + remstr[1:] + ',\n')
 
 	j.write(']\n')
 
-	j.write('function pageflip() {\n')
-	j.write('	index = index + 1;\n')
-	j.write('	image = cards[index][0];\n')
-	j.write('	description = cards[index][1];\n')
-	j.write('	points = cards[index][2];\n')
-	j.write('	document.getElementById("image").innerHTML = "<img src=" + image + ">";\n')
-	j.write('	document.getElementById("description").innerHTML = description;\n')
-	j.write('	score = score + points;\n')
-	j.write('	document.getElementById("score").innerHTML = "Score: " + score;\n')
-	j.write('}\n')
+	j.close()
+
+	to_append = []
+	with open('base.js') as base:
+		to_append = base.readlines()
+
+	j = open(directory + '/process.js', 'a')
+
+	for line in to_append:
+		j.write(line)
 
 	j.close()
 
