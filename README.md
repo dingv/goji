@@ -21,7 +21,7 @@ Goji datatypes ('interface types') can be declared and piped through the Goji st
 - Declare products with `product=['image_path', 'text', price]`
 
 ### A simple Goji script
-Click [here](https://dingv.github.io/goji/frames/index.html) to see the Goji rendering of the following script. Goji parses .goj scripts sequentially.
+Click [here](https://dingv.github.io/goji/frames/index.html) to see the Goji rendering of the following script. Goji parses `.goj` scripts sequentially.
 ```
 title='U.S. Presidents'
 card=['img/GeorgeWashington.jpg', '1: George Washington, 1789-1797', 100]
