@@ -22,8 +22,7 @@ Goji datatypes ('interface types') can be declared and piped through the Goji st
 
 ### A simple Goji script
 Click [here](https://dingv.github.io/goji/frames/index.html) to see the Goji rendering of the following script. Goji parses .goj scripts sequentially.
-
-'''
+```
 title='U.S. Presidents'
 card=['img/GeorgeWashington.jpg', '1: George Washington, 1789-1797', 100]
 card=['img/JohnAdams.jpg', '2: John Adams, 1797-1801', 100]
@@ -34,7 +33,7 @@ card=['img/JohnQuincyAdams.jpg', '6: John Quincy Adams, 1825-1829', 100]
 essay=['Name a U.S. President.', 100, 200]
 product=['img/pencil.jpg', 'Presidential Pencil', -500]
 card=['img/complete.jpg', 'Task complete!', 100]
-'''
+```
 
 ## Goji interpreter
 The Goji interpreter is written in Python and will interpret any properly constructed `.goj` file (see specs above). To execute the interpreter, navigate to your `goji` directory, ensure that your `.goj` scripts are housed in the directory, and run

@@ -5,7 +5,6 @@ var frames = [
 ['card','img/JamesMadison.jpg', '4: James Madison, 1809-1817', 100],
 ['card','img/JamesMonroe.jpg', '5: James Monroe, 1817-1825', 100],
 ['card','img/JohnQuincyAdams.jpg', '6: John Quincy Adams, 1825-1829', 100],
-['mc','Who was the first U.S. President?', ['George Washington', 'John Adams'], 0, 200],
 ['essay','Name a U.S. President.', 100, 200],
 ['product','img/pencil.jpg', 'Presidential Pencil', -500],
 ['card','img/complete.jpg', 'Task complete!', 100],
