@@ -11,6 +11,10 @@ body {
 	overflow-y:scroll;
 }
 
+a {
+	color:white
+}
+
 .button {
 	background-color:blue;
 	color:white;

@@ -8,7 +8,7 @@
 - Goji renderer
 
 ## Goji language
-To start scripting in Goji, clone this `goji` repo and script in `.goj` files housed in your cloned repo. 
+To start scripting in Goji, clone this `goji` repo and script in `.goj` files housed in your cloned repo.
 
 ### Syntax
 Goji's syntax draws inspiration from the Python stack and the flexible XML scripting functionality, and, in its data exchange functionality, addresses some of the syntactic inefficiences of JSON. Goji is space character-agnostic, newline-delineated, and engineered to simplify as much as possible the rendering of gamified elements.
@@ -43,3 +43,5 @@ python goji.py [your_script_name].goj
 
 ## Goji renderer
 Each time you execute the Goji interpreter on a `.goj` script `[your_script_name].goj`, the interpreter reads your script and the renderer generates HTML, CSS, and JavaScript files in a new, corresponding folder `goji/[your_script_name]`. You can put images anywhere in this project folder and they will render in the Goji-rendered webpage (viewable at `goji/[your_script_name]/index.html`, provided you use the correct filepaths in your Goji script.
+
+Goji includes a developer-customizable feature for form submission. In `base.js`, the `<a href></a>` field in the HTML generator for the `Submit` button element can be modified to any action, so as to record responses to the HTML form. 

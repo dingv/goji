@@ -96,7 +96,7 @@ def render_html(directory, objects):
 		# update runstr
 		runstr = runstr[end_clip+1:]
 		h.write('<p id="description">' + description + '</p>\n')
-		h.write('<button type="button" class="button" onclick="pageflip()">Claim</button>\n')
+		h.write('<button type="button" class="button" onclick="pageflip()"><a href="mailto:dingv@cs.stanford.edu">Claim</a></button>\n')
 		h.write('<button type="button" class="button" onclick="skip()">Skip</button>\n')
 		h.write('<p id="score">Score: 0</p>\n')
 

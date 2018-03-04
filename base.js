@@ -13,7 +13,7 @@ function pageflip() {
 	}
 
 	if (dtype == 'mc') {
-		
+
 	}
 
 	if (dtype == 'essay') {
