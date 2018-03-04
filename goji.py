@@ -1,5 +1,6 @@
 import sys, os, shutil
 
+# Run goji.py on a .goj script to generate HTML/JS
 def main():
 	goj_path = sys.argv[1]
 	directory = getdir(goj_path)
@@ -8,7 +9,7 @@ def main():
 	render_html(directory, objects)
 	render_js(directory, objects)
 
-# Read .goj into list of tuples (dtype, content) 
+# Read .goj into list of tuples (dtype, content)
 def interpret(script_path):
 	objects = []
 	lines = []
@@ -31,6 +32,7 @@ def interpret(script_path):
 
 	return objects
 
+# Get name of directory to initialize Goji project from .goj filename
 def getdir(script_path):
 	return script_path[:-4] # remove .goj at end
 
@@ -40,7 +42,7 @@ def setup(directory):
 	if not os.path.exists(directory):
 		os.makedirs(directory)
 	# make index.html
-	html = open(directory + '/index.html', 'w+') 
+	html = open(directory + '/index.html', 'w+')
 	# make process.js
 	js = open(directory + '/process.js', 'w+')
 	# copy over goji styles.css
@@ -48,6 +50,7 @@ def setup(directory):
 	html.close()
 	js.close()
 
+# Based on input from interpreter, write to HTML file in project dir
 def render_html(directory, objects):
 	h = open(directory + '/index.html', 'w')
 	# HTML header
@@ -58,7 +61,7 @@ def render_html(directory, objects):
 	h.write('<link rel="stylesheet" href="styles.css">\n')
 	# HTML page title
 	title = objects[0][1]
-	title = title[1:] 
+	title = title[1:]
 	title = title[:-1] # strip ''
 	h.write('<title>' + title + '</title>\n')
 	h.write('</head>\n')
@@ -70,7 +73,7 @@ def render_html(directory, objects):
 
 	# Initial frame
 	frame1 = objects[1] # 0 is title
-	
+
 	# card type
 	if frame1[0] == 'card':
 		# liststr: ['img/GeorgeWashington.jpg', '1: George Washington, 1789-1797', 100]
@@ -95,18 +98,15 @@ def render_html(directory, objects):
 		h.write('<p id="description">' + description + '</p>\n')
 		h.write('<button type="button" class="button" onclick="pageflip()">Claim</button>')
 		h.write('<button type="button" class="button" onclick="skip()">Skip</button>')
-
 		h.write('<p id="score">Score: 0</p>\n')
-	
+
 	h.write('</body>\n')
 	h.write('</html>')
-
 	h.close()
 
-
+# Based on input from interpreter, write to JS file in project dir
 def render_js(directory, objects):
 	j = open(directory + '/process.js', 'w')
-
 	j.write('var frames = [\n')
 
 	for i in range(1, len(objects)):
@@ -116,7 +116,6 @@ def render_js(directory, objects):
 		j.write('[\'' + str(dtype) + '\',' + remstr[1:] + ',\n')
 
 	j.write(']\n')
-
 	j.close()
 
 	to_append = []
@@ -129,7 +128,6 @@ def render_js(directory, objects):
 		j.write(line)
 
 	j.close()
-
 
 if __name__ == '__main__':
 	main()
