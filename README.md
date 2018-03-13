@@ -19,12 +19,17 @@ Goji datatypes ('interface types') can be declared and piped through the Goji st
 - Declare point-rewarding flashcards with `card=['image_path', 'text', point_value]`
 - Declare essay questions with `essay=['prompt', char_limit, point_value]`
 - Declare products with `product=['image_path', 'text', price]`
+- New in v2.0: Declare badges with `badge=['badge_name', 'score'/'reading', threshold_value]`
+- New in v2.0: Declare readings with `reading=['image_path', 'reading_text', point_value]`
 
 ### A simple Goji script
 Click [here](https://dingv.github.io/goji/frames/index.html) to see the Goji rendering of the following script. Goji parses `.goj` scripts sequentially.
 ```
 title='U.S. Presidents'
+badge=['Just Getting Started', 'score', 200]
+badge=['Reading Is Fun', 'reading', 1]
 card=['img/GeorgeWashington.jpg', '1: George Washington, 1789-1797', 100]
+reading=['', 'George Washington was the first president of the United States.', 100]
 card=['img/JohnAdams.jpg', '2: John Adams, 1797-1801', 100]
 card=['img/ThomasJefferson.jpg', '3: Thomas Jefferson, 1801-1809', 100]
 card=['img/JamesMadison.jpg', '4: James Madison, 1809-1817', 100]
@@ -32,7 +37,7 @@ card=['img/JamesMonroe.jpg', '5: James Monroe, 1817-1825', 100]
 card=['img/JohnQuincyAdams.jpg', '6: John Quincy Adams, 1825-1829', 100]
 essay=['Name a U.S. President.', 100, 200]
 product=['img/pencil.jpg', 'Presidential Pencil', -500]
-card=['img/complete.jpg', 'Task complete!', 100]
+card=['img/complete.jpg', 'Task complete!', 0]
 ```
 
 ## Goji interpreter
@@ -44,4 +49,4 @@ python goji.py [your_script_name].goj
 ## Goji renderer
 Each time you execute the Goji interpreter on a `.goj` script `[your_script_name].goj`, the interpreter reads your script and the renderer generates HTML, CSS, and JavaScript files in a new, corresponding folder `goji/[your_script_name]`. You can put images anywhere in this project folder and they will render in the Goji-rendered webpage (viewable at `goji/[your_script_name]/index.html`, provided you use the correct filepaths in your Goji script.
 
-Goji includes a developer-customizable feature for form submission. In `base.js`, the `<a href></a>` field in the HTML generator for the `Submit` button element can be modified to any action, so as to record responses to the HTML form.
+Goji includes a developer-customizable feature for form submission. In `goji.py`, the `<a href></a>` field in the HTML generator for the `Submit` button element can be modified to any action, so as to record responses to the HTML form.

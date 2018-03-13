@@ -1,19 +1,27 @@
 var index = 0;
 var score = frames[0][3];
+var numReading = 0;
 
 function pageflip() {
-	index = index + 1;
+
+	document.getElementById("next").innerHTML = '<a href="mailto:dingv@cs.stanford.edu">Claim</a>'
+
 	document.getElementById("score").innerHTML = "Score: " + score;
 	dtype = frames[index][0];
+
+	if (dtype == 'reading') {
+		image = frames[index][1];
+		description = frames[index][2];
+		document.getElementById("image").innerHTML = image;
+		document.getElementById("description").innerHTML = description;
+		numReading += 1;
+	}
+
 	if (dtype == 'card' || dtype == 'product') {
 		image = frames[index][1];
 		description = frames[index][2];
 		document.getElementById("image").innerHTML = "<img src=" + image + ">";
 		document.getElementById("description").innerHTML = description;
-	}
-
-	if (dtype == 'mc') {
-
 	}
 
 	if (dtype == 'essay') {
@@ -27,9 +35,35 @@ function pageflip() {
 
 	points = frames[index][3];
 
-	if (score + points >= 0) {
-		score = score + points;
+	score = score + points;
+
+	for (var i = 0; i < badges.length; i++) {
+		name = badges[i][1];
+		type = badges[i][2];
+		threshold = badges[i][3];
+
+		if (type == 'score') {
+			if (score == threshold) {
+				currStr = document.getElementById("badges").innerHTML;
+				if (currStr.indexOf(name) == -1) { // badge not in string
+					newStr = currStr + name + ", ";
+					document.getElementById("badges").innerHTML = newStr;
+				}
+			}
+		}
+
+		if (type == 'reading') {
+			if (numReading == threshold) {
+				currStr = document.getElementById("badges").innerHTML;
+				if (currStr.indexOf(name) == -1) { // badge not in string
+					newStr = currStr + name + ", ";
+					document.getElementById("badges").innerHTML = newStr;
+				}
+			}
+		}
 	}
+
+	index += 1;
 }
 
 function skip() {
@@ -40,10 +74,6 @@ function skip() {
 		description = frames[index][2];
 		document.getElementById("image").innerHTML = "<img src=" + image + ">";
 		document.getElementById("description").innerHTML = description;
-	}
-
-	if (dtype == 'mc') {
-
 	}
 
 	if (dtype == 'essay') {

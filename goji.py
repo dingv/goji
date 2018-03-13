@@ -71,35 +71,37 @@ def render_html(directory, objects):
 	h.write('<body>\n')
 	h.write('<h1>' + title + '</h1>\n') # title h1
 
+	'''
 	# Initial frame
 	frame1 = objects[1] # 0 is title
 
-	# card type
-	if frame1[0] == 'card':
-		# liststr: ['img/GeorgeWashington.jpg', '1: George Washington, 1789-1797', 100]
-		liststr = objects[1][1]
-		# runstr task 1: image path
-		runstr = liststr[2:] # remove '[
-		comma_index = runstr.find(',')
-		# image path
-		image_path = runstr[:comma_index]
-		image_path = image_path[:-1] # remove '
-		# update runstr
-		runstr = runstr[comma_index+1:]
-		h.write('<p id="image"><img src="' + str(image_path) + '"</p>\n')
-		# runstr task 2: description
-		start_clip = runstr.find('\'')
-		runstr = runstr[start_clip+1:] # remove start '
-		end_clip = runstr.find('\'')
-		# description
-		description = runstr[start_clip-1:end_clip]
-		# update runstr
-		runstr = runstr[end_clip+1:]
-		h.write('<p id="description">' + description + '</p>\n')
-		h.write('<button type="button" class="button" onclick="pageflip()"><a href="mailto:dingv@cs.stanford.edu">Claim</a></button>\n')
-		h.write('<button type="button" class="button" onclick="skip()">Skip</button>\n')
-		h.write('<p id="score">Score: 0</p>\n')
-		h.write('<p>Badges:</p>')
+	# liststr: ['img/GeorgeWashington.jpg', '1: George Washington, 1789-1797', 100]
+	liststr = objects[1][1]
+	# runstr task 1: image path
+	runstr = liststr[2:] # remove '[
+	comma_index = runstr.find(',')
+	# image path
+	image_path = runstr[:comma_index]
+	image_path = image_path[:-1] # remove '
+	# update runstr
+	runstr = runstr[comma_index+1:]
+	h.write('<p id="image"><img src="' + str(image_path) + '"</p>\n')
+	# runstr task 2: description
+	start_clip = runstr.find('\'')
+	runstr = runstr[start_clip+1:] # remove start '
+	end_clip = runstr.find('\'')
+	# description
+	description = runstr[start_clip-1:end_clip]
+	# update runstr
+	runstr = runstr[end_clip+1:]
+	'''
+	h.write('<p id="image"></p>\n')
+	h.write('<p id="description"></p>\n')
+	h.write('<button id="next" type="button" class="button" onclick="pageflip()">Start</button>\n')
+	h.write('<button type="button" class="button" onclick="skip()">Skip</button>\n')
+	h.write('<p id="score">Score: 0</p>\n')
+	h.write('<p>Badges:</p>\n')
+	h.write('<p id="badges"></p>\n')
 
 	h.write('</body>\n')
 	h.write('</html>')
@@ -108,15 +110,31 @@ def render_html(directory, objects):
 # Based on input from interpreter, write to JS file in project dir
 def render_js(directory, objects):
 	j = open(directory + '/process.js', 'w')
+
+	# ALL FRAMES NON-BADGING
 	j.write('var frames = [\n')
 
 	for i in range(1, len(objects)):
 		object = objects[i]
 		dtype = object[0]
 		remstr = object[1]
-		j.write('[\'' + str(dtype) + '\',' + remstr[1:] + ',\n')
+		if dtype != 'badge':
+			j.write('[\'' + str(dtype) + '\',' + remstr[1:] + ',\n')
 
 	j.write(']\n')
+
+	# BADGES
+	j.write('var badges = [\n')
+
+	for i in range(1, len(objects)):
+		object = objects[i]
+		dtype = object[0]
+		remstr = object[1]
+		if dtype == 'badge':
+			j.write('[\'' + str(dtype) + '\',' + remstr[1:] + ',\n')
+
+	j.write(']\n')
+
 	j.close()
 
 	to_append = []
