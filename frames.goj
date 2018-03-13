@@ -1,4 +1,6 @@
 title='U.S. Presidents'
+badge=['Just Getting Started', score=200]
+badge=['Reading Is Fun', reading=1]
 card=['img/GeorgeWashington.jpg', '1: George Washington, 1789-1797', 100]
 card=['img/JohnAdams.jpg', '2: John Adams, 1797-1801', 100]
 card=['img/ThomasJefferson.jpg', '3: Thomas Jefferson, 1801-1809', 100]

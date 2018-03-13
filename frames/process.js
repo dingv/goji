@@ -1,8 +1,6 @@
-// import System.IO;
-
 var frames = [
 ['card','img/GeorgeWashington.jpg', '1: George Washington, 1789-1797', 100],
-['reading', 'George Washington was the first president of the United States.'],
+['reading', '', 'George Washington was the first president of the United States.', 100],
 ['card','img/JohnAdams.jpg', '2: John Adams, 1797-1801', 100],
 ['card','img/ThomasJefferson.jpg', '3: Thomas Jefferson, 1801-1809', 100],
 ['card','img/JamesMadison.jpg', '4: James Madison, 1809-1817', 100],
@@ -12,15 +10,16 @@ var frames = [
 ['product','img/pencil.jpg', 'Presidential Pencil', -500],
 ['card','img/complete.jpg', 'Task complete!', 0]
 ]
-var index = 0;
-var score = frames[0][3];
 
 // badges
 var badges = [
-	['Just Getting Started', score=200],
-	['Avid Reader', reading=3]
+	['Just Getting Started', 'score', 200],
+	['Reader', 'reading', 1]
 ]
 
+var index = 0;
+var score = frames[0][3];
+var numReading = 0;
 
 function pageflip() {
 	index = index + 1;
@@ -28,9 +27,10 @@ function pageflip() {
 	dtype = frames[index][0];
 
 	if (dtype == 'reading') {
-		description = frames[index][1];
+		description = frames[index][2];
 		document.getElementById("image").innerHTML = null;
 		document.getElementById("description").innerHTML = description;
+		numReading += 1;
 	}
 
 	if (dtype == 'card' || dtype == 'product') {
@@ -55,15 +55,32 @@ function pageflip() {
 
 	points = frames[index][3];
 
-	if (score + points >= 0) {
-		score = score + points;
+	score = score + points;
 
-		if (score == b1) {
-			currStr = document.getElementById("badges").innerHTML;
-			newStr = currStr + "\nBadge 1\n"
-			document.getElementById("badges").innerHTML = newStr;
+	for (var i = 0; i < badges.length; i++) {
+		name = badges[i][0];
+		type = badges[i][1];
+		threshold = badges[i][2];
+
+		if (type == 'score') {
+			if (score == threshold) {
+				currStr = document.getElementById("badges").innerHTML;
+				if (currStr.indexOf(name) == -1) { // badge not in string
+					newStr = currStr + name + ", ";
+					document.getElementById("badges").innerHTML = newStr;
+				}
+			}
 		}
 
+		if (type == 'reading') {
+			if (numReading == threshold) {
+				currStr = document.getElementById("badges").innerHTML;
+				if (currStr.indexOf(name) == -1) { // badge not in string
+					newStr = currStr + name + ", ";
+					document.getElementById("badges").innerHTML = newStr;
+				}
+			}
+		}
 	}
 }
 

@@ -99,6 +99,7 @@ def render_html(directory, objects):
 		h.write('<button type="button" class="button" onclick="pageflip()"><a href="mailto:dingv@cs.stanford.edu">Claim</a></button>\n')
 		h.write('<button type="button" class="button" onclick="skip()">Skip</button>\n')
 		h.write('<p id="score">Score: 0</p>\n')
+		h.write('<p>Badges:</p>')
 
 	h.write('</body>\n')
 	h.write('</html>')
