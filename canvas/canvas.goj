@@ -1,0 +1,23 @@
+hops:
+	first=Hops,
+	last=Bixby,
+	title=Agent,
+	org=CDC,
+	width=30,
+	height=30,
+	color=red,
+	x=100,
+	y=100,
+	dialogue=Virus X outbreak reported in San Francisco.
+
+suzy:
+	first=Suzy,
+	last=Trillium,
+	title=Director,
+	org=CDC,
+	width=30,
+	height=30,
+	color=green,
+	x=300,
+	y=300,
+	dialogue=I'd advise you to stay indoors.
