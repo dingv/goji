@@ -1,11 +1,24 @@
+#!/usr/bin/env python
+__author__ = "Valerie Ding"
+__email__="dingv@cs.stanford.edu"
+
 import sys, os, shutil
 
-# Run goji.py on a .goj script to generate HTML/JS
+# Usage: python goji.py [static/dynamic] [project directory]
 def main():
-	goj_path = sys.argv[1]
-	directory = getdir(goj_path)
+	mode = sys.argv[1] # "dynamic" or "static"
+	directory = sys.argv[2] # project directory
 	setup(directory)
-	objects = interpret(goj_path)
+	if (mode == "dynamic"):
+		file = open(directory + ".goj", 'w')
+		while True:
+			line = input("> ")
+			if (line == "quit" or line == "exit"):
+				file.close()
+				break
+			else:
+				file.write(line + '\n')
+	objects = interpret(directory + ".goj")
 	render_html(directory, objects)
 	render_js(directory, objects)
 
