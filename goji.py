@@ -22,7 +22,7 @@ def main():
 	render_html(directory, objects)
 	render_js(directory, objects)
 
-# Read .goj into list of tuples (dtype, content)
+# Read .goj into list of tuples object=(dtype, content)
 def interpret(script_path):
 	objects = []
 	lines = []
@@ -148,6 +148,18 @@ def render_js(directory, objects):
 
 	j.write(']\n')
 
+	# PRODUCTS
+	j.write('var products = [\n')
+
+	for i in range(1, len(objects)):
+		object = objects[i]
+		dtype = object[0]
+		remstr = object[1]
+		if dtype == 'product':
+			j.write('[\'' + str(dtype) + '\',' + remstr[1:] + ',\n')
+
+	j.write(']\n')
+	
 	j.close()
 
 	to_append = []

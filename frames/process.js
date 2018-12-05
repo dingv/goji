@@ -7,12 +7,15 @@ var frames = [
 ['card','img/JamesMonroe.jpg', '5: James Monroe, 1817-1825', 100],
 ['card','img/JohnQuincyAdams.jpg', '6: John Quincy Adams, 1825-1829', 100],
 ['essay','Name a U.S. President.', 100, 200],
-['product','img/pencil.jpg', 'Presidential Pencil', -500],
+['product','AmazonBasics Pre-sharpened Wood Cased #2 HB Pencils, 150 Pack', 'https://amzn.to/2UeC5OF', -500],
 ['card','img/complete.jpg', 'Task complete!', 0],
 ]
 var badges = [
 ['badge','Just Getting Started', 'score', 200],
 ['badge','Reading Is Fun', 'reading', 1],
+]
+var products = [
+['product','AmazonBasics Pre-sharpened Wood Cased #2 HB Pencils, 150 Pack', 'https://amzn.to/2UeC5OF', -500],
 ]
 var index = 0;
 var score = frames[0][3];
@@ -33,7 +36,14 @@ function pageflip() {
 		numReading += 1;
 	}
 
-	if (dtype == 'card' || dtype == 'product') {
+	if (dtype == 'product') {
+		description = frames[index][1];
+		url = frames[index][2];
+		document.getElementById("image").innerHTML = "<a href=" + "\"" + url + "\"" + " target=\"_blank\">" + description + "</a>";
+		document.getElementById("description").innerHTML = "Click the link above to open vendor page in new tab, then claim via the button below.";
+	}
+
+	if (dtype == 'card') {
 		image = frames[index][1];
 		description = frames[index][2];
 		document.getElementById("image").innerHTML = "<img src=" + image + ">";
@@ -85,7 +95,7 @@ function pageflip() {
 function skip() {
 	index = index + 1;
 	dtype = frames[index][0];
-	if (dtype == 'card' || dtype == 'product') {
+	if (dtype == 'card') {
 		image = frames[index][1];
 		description = frames[index][2];
 		document.getElementById("image").innerHTML = "<img src=" + image + ">";

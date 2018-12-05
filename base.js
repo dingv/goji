@@ -17,7 +17,14 @@ function pageflip() {
 		numReading += 1;
 	}
 
-	if (dtype == 'card' || dtype == 'product') {
+	if (dtype == 'product') {
+		description = frames[index][1];
+		url = frames[index][2];
+		document.getElementById("image").innerHTML = "<a href=" + "\"" + url + "\"" + " target=\"_blank\">" + description + "</a>";
+		document.getElementById("description").innerHTML = "Click the link above to open vendor page in new tab, then claim via the button below.";
+	}
+
+	if (dtype == 'card') {
 		image = frames[index][1];
 		description = frames[index][2];
 		document.getElementById("image").innerHTML = "<img src=" + image + ">";
@@ -69,7 +76,7 @@ function pageflip() {
 function skip() {
 	index = index + 1;
 	dtype = frames[index][0];
-	if (dtype == 'card' || dtype == 'product') {
+	if (dtype == 'card') {
 		image = frames[index][1];
 		description = frames[index][2];
 		document.getElementById("image").innerHTML = "<img src=" + image + ">";
