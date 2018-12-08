@@ -9,6 +9,8 @@ var frames = [
 ['essay','Name a U.S. President.', 100, 200],
 ['product','AmazonBasics Pre-sharpened Wood Cased #2 HB Pencils, 150 Pack', 'https://amzn.to/2UeC5OF', -500],
 ['card','img/complete.jpg', 'Task complete!', 0],
+['achievement','Enter your name:', 100, 0],
+['social','', 0, 0],
 ]
 var badges = [
 ['badge','Just Getting Started', 'score', 200],
@@ -57,6 +59,23 @@ function pageflip() {
 		// placeholder description elem -- input form
 		charlimit = frames[index][2];
 		document.getElementById("description").innerHTML = "<input type=\"text\" maxlength=\"" + charlimit + "\">";
+	}
+
+	if (dtype == 'achievement') {
+		// prompt="Enter your name:"
+		prompt = frames[index][1];
+		document.getElementById("image").innerHTML = prompt;
+		// text submission form
+		charlimit = frames[index][2];
+		document.getElementById("description").innerHTML = "<input type=\"text\" maxlength=\"" + charlimit + "\">";
+
+		document.getElementById("next").innerHTML = '<a href="mailto:dingv@cs.stanford.edu">Send to developer</a>';
+	}
+
+	if (dtype == 'social') {
+		document.getElementById("image").innerHTML = '<a href="mailto:dingv@cs.stanford.edu">Share via email</a>';
+		document.getElementById("description").innerHTML = 
+		"<a href=" + "\"https://www.facebook.com\"" + " target=\"_blank\">Facebook</a>\n <a href='https://www.twitter.com'>Tweet</a>";
 	}
 
 	points = frames[index][3];

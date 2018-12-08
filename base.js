@@ -40,6 +40,23 @@ function pageflip() {
 		document.getElementById("description").innerHTML = "<input type=\"text\" maxlength=\"" + charlimit + "\">";
 	}
 
+	if (dtype == 'achievement') {
+		// prompt="Enter your name:"
+		prompt = frames[index][1];
+		document.getElementById("image").innerHTML = prompt;
+		// text submission form
+		charlimit = frames[index][2];
+		document.getElementById("description").innerHTML = "<input type=\"text\" maxlength=\"" + charlimit + "\">";
+
+		document.getElementById("next").innerHTML = '<a href="mailto:dingv@cs.stanford.edu">Send to developer</a>';
+	}
+
+	if (dtype == 'social') {
+		document.getElementById("image").innerHTML = '<a href="mailto:dingv@cs.stanford.edu">Share via email</a>';
+		document.getElementById("description").innerHTML = 
+		"<a href=" + "\"https://www.facebook.com\"" + " target=\"_blank\">Facebook</a>\n <a href='https://www.twitter.com'>Tweet</a>";
+	}
+
 	points = frames[index][3];
 
 	score = score + points;
